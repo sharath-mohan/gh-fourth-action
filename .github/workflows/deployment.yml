@@ -35,11 +35,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: dist
-          path: dist
       - name: Output Contents
-        run: ls -al
+        run: ls -R
       - name: Deploy to Server
         run: echo "Deploying to server..."
