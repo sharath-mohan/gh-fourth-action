@@ -29,9 +29,7 @@ jobs:
         uses: actions/upload-artifact@v4 # creates the artifact
         with:
           name: dist
-          path: |
-            dist
-            package.json
+          path: dist
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -40,6 +38,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dist
+          path: dist
       - name: Output Contents
         run: ls -al
       - name: Deploy to Server
