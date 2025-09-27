@@ -15,9 +15,12 @@ jobs:
         run: npm ci
       - name: Build Project
         run: npm run test
-  deploy:
+  build:
     needs: test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [a, b, c]
     steps:
       - name: Get Code
         uses: actions/checkout@v5
@@ -25,3 +28,10 @@ jobs:
         run: npm ci
       - name: Build Project
         run: npm run build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-${{ matrix.version}}
+          path: |
+            dist
+            package.json
